@@ -5,9 +5,9 @@ part 'CountryDetail.g.dart';
 class CountryDetail{
   final String cca2;
   final String region;
-  final String subRegion;
+  final String subregion;
   final int population;
-  CountryDetail(this.cca2, this.region, this.subRegion, this.population);
+  CountryDetail(this.cca2, this.region, this.subregion, this.population);
   factory CountryDetail.fromJson(Map <String, dynamic> json) => _$CountryDetailFromJson(json);
   Map<String, dynamic> toJson() => _$CountryDetailToJson(this);
 }

@@ -14,8 +14,8 @@ abstract class ApiService {
     @Query('fields') String fields = 'name,region,cca2',
   });
 
-  @GET('name{name}?fullText=true')
+  @GET('alpha/{code}')
   Future<List<CountryDetail>> getCountryDetail({
-    @Path('name') required String name
+    @Path('code') required String code
 });
 }

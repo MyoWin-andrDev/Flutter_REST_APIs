@@ -47,7 +47,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<CountryDetail>> getCountryDetail({required name}) async {
+  Future<List<CountryDetail>> getCountryDetail({required code}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -60,7 +60,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              'name${name}?fullText=true',
+              'alpha/${code}',
               queryParameters: queryParameters,
               data: _data,
             )

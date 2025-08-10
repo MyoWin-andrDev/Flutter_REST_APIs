@@ -6,8 +6,9 @@ import 'package:rest_api/network/api_service.dart';
 import 'package:dio/dio.dart';
 import 'package:rest_api/ui/DetailScreen.dart';
 
+
 class Home extends StatelessWidget {
-  const Home({super.key});
+  ApiService apiService = ApiService(Dio());
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +34,22 @@ class Home extends StatelessWidget {
           }),
     );
   }
+
+  Widget listItem(CountryModel countryList, BuildContext context){
+    return ListTile(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen(apiService: apiService, cca2: countryList.cca2)));
+      } ,
+      leading: CachedNetworkImage(
+          imageUrl: "https://flagsapi.com/${countryList.cca2}/flat/64.png",
+          width: 100,
+          height: 100,
+          placeholder: (_,url) => Center(child: CircularProgressIndicator()) ),
+      title: Text(countryList.name.common),
+      subtitle: Text(countryList.region),
+    );
+  }
+
 }
 
-Widget listItem(CountryModel countryList, BuildContext context){
-  return ListTile(
-    onTap: (){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Detailscreen(countryList.cca2)));
-    } ,
-    leading: CachedNetworkImage(
-      imageUrl: "https://flagsapi.com/${countryList.cca2}/flat/64.png",
-      width: 100,
-      height: 100,
-      placeholder: (_,_) => Center(child: CircularProgressIndicator()) ),
-    title: Text(countryList.name.common),
-    subtitle: Text(countryList.region),
-  );
-}
+
